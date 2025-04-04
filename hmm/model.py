@@ -69,6 +69,18 @@ class HiddenMarkovModel:
             self.trans_prob = A_new / A_new.sum(axis=1, keepdims=True)
             self.emit_prob = B_new / B_new.sum(axis=1, keepdims=True)
             self.start_prob = pi_new / pi_new.sum()
+        
+    def predict_next_observation(self, obs_seq):
+        """
+        Predict the most likely next observation based on the last state in Viterbi decoding.
+        """
+        state_seq = self.predict(obs_seq)
+        last_state_name = state_seq[-1]
+        last_state_index = self.states.index(last_state_name)
+
+        # Use the emission probabilities of the last state
+        next_obs_index = np.argmax(self.emit_prob[last_state_index])
+        return self.observations[next_obs_index]
             
     def predict(self, obs_seq):
         T = len(obs_seq)
@@ -96,6 +108,25 @@ class HiddenMarkovModel:
     def save(self, file_path):
         with open(file_path, 'wb') as f:
             pickle.dump(self, f)
+
+    def predict_next_observation_modified(self, obs_seq, top_k=3):
+        """
+        Return top-k most probable next observations with their probabilities
+        based on the most likely current state.
+        """
+        # Step 1: Predict current state via Viterbi
+        state_seq = self.predict(obs_seq)
+        last_state_name = state_seq[-1]
+        last_state_index = self.states.index(last_state_name)
+
+        # Step 2: Get emission probabilities for that state
+        probs = self.emit_prob[last_state_index]
+
+        # Step 3: Get top-k observation indices
+        top_indices = np.argsort(probs)[::-1][:top_k]
+
+        # Step 4: Return observations and probabilities
+        return [(self.observations[i], round(probs[i], 4)) for i in top_indices]
 
     @staticmethod
     def load(file_path):
