@@ -1,7 +1,6 @@
-# bayesian_network.py (example)
 import os
 import joblib
-from pgmpy.models import DiscreteBayesianNetwork  # <-- Use DiscreteBayesianNetwork
+from pgmpy.models import DiscreteBayesianNetwork 
 from pgmpy.factors.discrete import TabularCPD
 
 class BayesianNetworkModel:
@@ -11,7 +10,6 @@ class BayesianNetworkModel:
         self.is_trained = False
 
     def build_structure(self):
-        # Use DiscreteBayesianNetwork exactly like BayesianNetwork
         self.bn = DiscreteBayesianNetwork([
             ("TimeOfDay", "NextState"),
             ("TempRange", "NextState")

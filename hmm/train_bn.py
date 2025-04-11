@@ -25,7 +25,7 @@ def discretize_time(timestamp_ms):
         return "Night"
 
 def discretize_temperature(temp):
-    """
+    """------------------------------------------------------------------------------------------------------------------------------------
     Convert a continuous temperature to a discrete range.
     Adjust thresholds as needed.
     """
