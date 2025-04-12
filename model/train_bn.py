@@ -37,7 +37,7 @@ def discretize_temperature(temp):
         return "Hot"
 
 def train_bn_model(input_json="../data/hmm_observations_with_time_temp.json", 
-                   output_model_path="bn_model.pkl"):
+                   output_model_path="saved_models/bn_model.pkl"):
     """
     Train a BN from occupant data (location, activity, time, temperature, etc.).
     Saves the final BN model to disk.

@@ -50,7 +50,7 @@ for obs_tuple, prob in hmm_preds:
 # -------------------------------------------------------------------
 # 3) Define function to run BN inference with HMM output
 # -------------------------------------------------------------------
-def test_bn_model(bn_model_path="bn_model.pkl"):
+def test_bn_model(bn_model_path="saved_models/bn_model.pkl"):
     """
     Uses the trained BN to refine the HMM's top-N predictions based on
     additional context (time, temperature).
@@ -148,4 +148,4 @@ def test_bn_model(bn_model_path="bn_model.pkl"):
 # 4) Run test
 # -------------------------------------------------------------------
 if __name__ == "__main__":
-    test_bn_model("bn_model.pkl")
+    test_bn_model("saved_models/bn_model.pkl")

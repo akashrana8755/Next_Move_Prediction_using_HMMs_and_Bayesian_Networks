@@ -9,13 +9,14 @@ hmm = HiddenMarkovModel.load(model_path)
 # Prepare test sequence (activity@location format)
 test_sequence = [
     "watching@bedroom1",
+    "exercise@garden",
     "toilet@bathroom",
     "watching@bedroom1",
-    "sleeping@bedroom1",
-    "exercise@garden"
+    "sleeping@bedroom1"
+    
 ]
 
-# Use the same dictionary used in training
+# Use the same dictionary used  in training
 with open("../data/hmm_observations_100k.json", "r") as f:
     data = [json.loads(line) for line in f]
 vocab = sorted(set(f"{d['activity']}@{d['location']}" for d in data))
