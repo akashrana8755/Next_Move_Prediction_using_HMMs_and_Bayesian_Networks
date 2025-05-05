@@ -1,0 +1,5 @@
+timestamp,location,activity,sensor
+2025-03-19 08:00:00,Living Room,Sitting,Motion Detected
+2025-03-19 08:10:00,Kitchen,Cooking,Motion Detected
+2025-03-19 08:30:00,Living Room,Sitting,No Motion
+2025-03-19 09:00:00,Bedroom,No Motion,No Motion
